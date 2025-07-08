@@ -13,13 +13,13 @@ class ProductController extends Controller
    public function index()
     {
         // response()->json(Product::all());
-        $products= Product::all();
+       $products= Product::all();
        return view('products/index', compact('products'));
     }
 
     public function store(Request $request, WooCommerceService $woo)
     {
-        $user = $request->user(); // ✅ Fix: define $user
+        $user = $request->user(); 
 
         if (!$user) {
             return response()->json(['message' => 'Unauthenticated.'], 401);
@@ -33,7 +33,7 @@ class ProductController extends Controller
         ]);
 
         $product = Product::create([
-            'user_id' => $user->id, // ✅ use $user instead of auth()->id() for consistency
+            'user_id' => $user->id, 
             'name' => $validated['name'],
             'description' => $validated['description'],
             'price' => $validated['price'],
