@@ -15,19 +15,19 @@ use App\Http\Controllers\ProductController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-//Route::get('/products', [ProductController::class, 'index']);
- Route::get('/products', [ProductController::class, 'index']);
-// Route::get('/products', function () {
-//     return response()->json(['message' => 'working']);
-// });
+
+Route::get('/products', [ProductController::class, 'index']);
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/products', [ProductController::class, 'store']);
    
     Route::put('/products/{product}', [ProductController::class, 'update']);
     Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+    
 });
 
